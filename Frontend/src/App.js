@@ -16,12 +16,12 @@ function App() {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post('http://localhost:8000/pipelines/parse', {
-        nodes: nodes.map(node => ({ id: node.id, data: node.data })),
+      const response = await axios.post('/pipelines/parse', {
+        nodes: nodes.map(node => ({ id: node.id, type: node.data.nodeType, data: node.data })),
         edges: edges.map(edge => ({
           source: edge.source,
           target: edge.target,
-          type: edge.type
+          id: edge.id,
         })),
       });
 
